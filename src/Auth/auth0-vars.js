@@ -6,5 +6,5 @@ import {
 export const AUTH_KEYS = {
   domain: authDomain,
   clientId: authClientId,
-  callbackUrl: 'http://localhost:3000/callback'
+  callbackUrl: 'https://blooming-brushlands-56281.herokuapp.com/callback'
 };
