@@ -6,7 +6,7 @@ import '../App.css'
 import GetTodos from "./GetTodos";
 
 
-const TOKEN = localStorage.getItem("auth0:id_token");
+const TOKEN = localStorage.getItem("auth0:access_token");
 export const client = new ApolloClient({
   uri: GRAPHQL_URL,
   headers: {
