@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import {
+  Navbar,
+  Button,
+  Nav
+} from "react-bootstrap";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`);
+  }
+
+  login() {
+    this.props.auth.login();
+  }
+
+  logout() {
+    this.props.auth.logout();
+  }
+
+  render() {
+    const { isAuthenticated } = this.props.auth;
+
+    return (
+      <div>
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand className="appHeader">React-Todo</Navbar.Brand>
+          <Nav className="mr-auto">
+            {
+              isAuthenticated() && (
+                <Nav.Link onClick={this.goTo.bind(this, 'manage')}>Dashboard</Nav.Link>
+              )
+            }
+            {
+              isAuthenticated() && (
+                <Nav.Link onClick={this.goTo.bind(this, 'alltodos')}>All Todos</Nav.Link>
+              )
+            }
+            {
+              !isAuthenticated() && (
+                <Button variant="outline-info" onClick={this.login.bind(this)}>Login</Button>
+              )
+            }
+            {
+              isAuthenticated() && (
+                <Button variant="outline-info" onClick={this.logout.bind(this)}>Logout</Button>
+              )
+            }
+          </Nav>
+        </Navbar>
+      </div>
+    );
+  }
 }
 
 export default App;

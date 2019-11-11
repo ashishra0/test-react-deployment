@@ -17,6 +17,14 @@
   color: white;
 }
 
+.getTodo{
+  padding: 100px;
+}
+
+.mark-todo {
+  padding-right: 10px;
+}
+
 .App-link {
   color: #09d3ac;
 }
